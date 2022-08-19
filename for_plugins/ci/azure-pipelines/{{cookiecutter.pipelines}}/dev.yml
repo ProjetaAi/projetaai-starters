@@ -1,0 +1,26 @@
+trigger:
+ branches:
+   include:
+     - develop
+     - feature/*
+
+stages:
+  - stage: Validate
+    jobs:
+      - job: LintNTest
+        pool:
+          vmImage: 'ubuntu-latest'
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '{{cookiecutter.python_version}}'
+              addToPath: true
+              architecture: 'x64'
+          - script: |
+              pip install pre-commit
+              pre-commit run --all-files
+            displayName: 'Lint code'
+          - script: |
+              pip install -e .[test]
+              pytest
+            displayName: 'Run tests'
