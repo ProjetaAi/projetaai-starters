@@ -26,7 +26,7 @@ stages:
             displayName: 'Run tests'
   - stage: Deploy
     jobs:
-      - job: Ratify
+      - job: Update
         pool:
           vmImage: 'ubuntu-latest'
         steps:
@@ -45,15 +45,14 @@ stages:
                 echo '##vso[task.setvariable variable=ratify;]false'
               fi
             displayName: Check for ratify
+          - script: |
+              pip install -r ./src/requirements.txt
+            displayName: Install requirements
           - bash: |
               # TODO: Add the code for immediate update and execution of the 
               # production script
             displayName: 'Ratify production'
             condition: eq(variables['ratify'], 'true')
-      - job: Update
-        pool:
-          vmImage: 'ubuntu-latest'
-        steps:
           - checkout: self
             persistCredentials: true
           - bash: |
@@ -64,11 +63,6 @@ stages:
               git commit -m "Correcting cached status [skip ci]"
               git push origin HEAD:$(Build.SourceBranchName)
             displayName: 'Recommit with false cached'
-          - task: UsePythonVersion@0
-            inputs:
-              versionSpec: '{{cookiecutter.__python_version}}'
-              addToPath: true
-              architecture: 'x64'
           - bash: |
               # TODO: Add the code for production update here
             displayName: Update production
