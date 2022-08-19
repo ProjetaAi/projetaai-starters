@@ -13,7 +13,7 @@ stages:
         steps:
           - task: UsePythonVersion@0
             inputs:
-              versionSpec: '{{cookiecutter.python_version}}'
+              versionSpec: '{{cookiecutter.__python_version}}'
               addToPath: true
               architecture: 'x64'
           - script: |

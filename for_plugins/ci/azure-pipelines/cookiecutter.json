@@ -1,3 +1,4 @@
 {
-	"python_version": "{{cookiecutter.python_version}}"
+	"_pipelines": "azure-pipelines",
+	"__python_version": "{{cookiecutter.python_version}}"
 }
