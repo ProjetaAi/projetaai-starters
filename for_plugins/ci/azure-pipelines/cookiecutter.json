@@ -1,4 +1,3 @@
 {
-	"pipelines": "{{cookiecutter.pipelines}}",
 	"python_version": "{{cookiecutter.python_version}}"
 }
