@@ -6,9 +6,9 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = '{{cookiecutter.package_name}}'
-copyright = '2022, {{cookiecutter.author}}'
-author = '{{cookiecutter.author}}'
+project = '{{ cookiecutter.python_package }}'
+copyright = '2022, {{ cookiecutter.author }}'
+author = '{{ cookiecutter.author }}'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
