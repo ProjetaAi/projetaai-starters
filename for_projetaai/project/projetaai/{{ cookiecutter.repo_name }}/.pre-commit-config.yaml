@@ -3,6 +3,6 @@ repos:
     rev: '3.9.0'
     hooks:
       - id: flake8
-        additional_dependencies: 
+        additional_dependencies:
           - flake8-docstrings
           - flake8-annotations

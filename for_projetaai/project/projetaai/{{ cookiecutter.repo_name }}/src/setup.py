@@ -8,7 +8,7 @@ entry_point = (
 )
 
 
-def _get_dependencies(file: str):
+def _get_dependencies(file: str) -> list:
     with open(file, encoding="utf-8") as f:
         # Make sure we strip all comments and options (e.g "--extra-index-url")
         # that arise from a modified pip.conf file that configure global
@@ -41,7 +41,7 @@ setup(
             "Jinja2<3.1.0",
         ],
         "test": _get_dependencies("requirements-test.txt"),
-        "dev": (_get_dependencies("requirements-dev.txt") +
-                _get_dependencies("requirements-test.txt")),
+        "dev": (_get_dependencies("requirements-dev.txt")
+                + _get_dependencies("requirements-test.txt")),
     },
 )
