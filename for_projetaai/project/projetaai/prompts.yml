@@ -26,3 +26,9 @@ python_package:
   error_message: |
     It must start with a letter or underscore, be at least 2 characters long
     and contain only letters, digits, and/or underscores.
+
+author:
+  title: "Author:"
+  text: |
+    Please enter the authors names.
+    Comma separated.
