@@ -30,12 +30,21 @@ This project requires the following data/artifacts:
 
 _Example:_
 
-* Iris (CSV)
-    * Sepal length
-    * Sepal width
-    * Petal length
-    * Petal width
-    * Species
+#### Artifacts
+
+| Artifact | Type    | Notes  |
+| -------- | ------- | ------ |
+| iris     | Tabular |        |
+
+#### Features
+
+| From     | Feature      | Notes  |
+| -------- | ------------ | ------ |
+| iris     | Sepal length |        |
+| iris     | Sepal width  |        |
+| iris     | Petal length |        |
+| iris     | Petal width  |        |
+| iris     | Species      | Target |
 
 ### Outputs
 
@@ -43,14 +52,26 @@ This project generates the following data/artifacts:
 
 _Example:_
 
-* Species classifier (Pickle)
-* Classifier metrics (JSON)
-    * Accuracy
-    * Recall
+| Artifact   | Type    | Notes            |
+| --------   | ------- | ---------------- |
+| Classifier | Model   |                  |
+| Report     | Metrics | Accuracy, Recall |
 
 ### Algorithm explanation
 
 Explain the main data science process, what algorithm was chosen, why it was chosen, and how it solves the problem.
+
+#### Data preparation
+
+Describe how you cleaned and processed data for the post steps.
+
+#### Feature Engineering
+
+Describe what criteria did you use to choose the actual features for this model.
+
+#### Optimization
+
+Describe how you trained the chosen algorithm, what metrics you used, and how you validated its result.
 
 ### Use Cases
 
