@@ -1,122 +1,106 @@
 # {{ cookiecutter.project_name }}
 
-## Overview
+## Description
 
-This is your new Kedro project, which was generated using `Kedro {{ cookiecutter.kedro_version }}`.
+### Overview
 
-Take a look at the [Kedro documentation](https://kedro.readthedocs.io) to get started.
+Insert the main idea of this project. What aims it to solve?
 
-## Rules and guidelines
+### Motivation
 
-In order to get the best out of the template:
+Input the reason for the existence of this project. Why has it been developed?
 
-* Don't remove any lines from the `.gitignore` file we provide
-* Make sure your results can be reproduced by following a [data engineering convention](https://kedro.readthedocs.io/en/stable/faq/faq.html#what-is-data-engineering-convention)
-* Don't commit data to your repository
-* Don't commit any credentials or your local configuration to your repository. Keep all your credentials and local configuration in `conf/local/`
+### Dataflow Diagram
 
-## How to install dependencies
+Design a simple descriptive dataflow diagram. You can use [Mermaid](https://mermaid-js.github.io/mermaid/#/) and [MermaidCLI](https://github.com/mermaid-js/mermaid-cli#transform-a-markdown-file-with-mermaid-diagrams) and [VSCode Mermaid](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid), [PlantUML](https://plantuml.com/) or a custom markdown image under the `docs/assets` folder.
 
-Declare any dependencies in `src/requirements.txt` for `pip` installation and `src/environment.yml` for `conda` installation.
+### Pipelines
 
-To install them, run:
+Enter a simple description of the `Kedro` pipelines. If possible, use the same tools used in the DataFlow section for explaining it.
 
-```
-pip install -r src/requirements.txt
-```
+_Example:_
 
-## How to run your Kedro pipeline
+* **Data Engineering:** Pre-processes the inputs X, Y, Z using moving averages in order to smooth the prediction results producing A, B, C.
 
-You can run your Kedro project with:
+* **Data Science:** Predicts the inputs A, B, C values for the post three months from the execution moment using linear regression producing outputs D, E, F. 
 
-```
-kedro run
-```
+### Inputs/Features
 
-## How to test your Kedro project
+This project requires the following data/artifacts:
 
-Have a look at the file `src/tests/test_run.py` for instructions on how to write your tests. You can run your tests as follows:
+_Example:_
 
-```
-kedro test
-```
+* Iris (CSV)
+    * Sepal length
+    * Sepal width
+    * Petal length
+    * Petal width
+    * Species
 
-To configure the coverage threshold, go to the `.coveragerc` file.
+### Outputs
 
-## Project dependencies
+This project generates the following data/artifacts:
 
-To generate or update the dependency requirements for your project:
+_Example:_
 
-```
-kedro build-reqs
-```
+* Species classifier (Pickle)
+* Classifier metrics (JSON)
+    * Accuracy
+    * Recall
 
-This will `pip-compile` the contents of `src/requirements.txt` into a new file `src/requirements.lock`. You can see the output of the resolution by opening `src/requirements.lock`.
+### Algorithm explanation
 
-After this, if you'd like to update your project requirements, please update `src/requirements.txt` and re-run `kedro build-reqs`.
+Explain the main data science process, what algorithm was chosen, why it was chosen, and how it solves the problem.
 
-[Further information about project dependencies](https://kedro.readthedocs.io/en/stable/kedro_project_setup/dependencies.html#project-specific-dependencies)
+### Use Cases
 
-## How to work with Kedro and notebooks
+Describe some possible scenarios for using this project outputs.
 
-> Note: Using `kedro jupyter` or `kedro ipython` to run your notebook provides these variables in scope: `context`, `catalog`, and `startup_error`.
->
-> Jupyter, JupyterLab, and IPython are already included in the project requirements by default, so once you have run `pip install -r src/requirements.txt` you will not need to take any extra steps before you use them.
+## Usage
 
-### Jupyter
-To use Jupyter notebooks in your Kedro project, you need to install Jupyter:
+### Installation
 
-```
-pip install jupyter
-```
+In order to run this project, execute the following steps:
 
-After installing Jupyter, you can start a local notebook server:
+1. Clone this repo
+2. Go to the project folder using terminal
+3. Run `pip install -r src/requirements.txt`
 
-```
-kedro jupyter notebook
-```
+### Execution
 
-### JupyterLab
-To use JupyterLab, you need to install it:
+For executing the pipelines mentioned before, run the following commands:
 
-```
-pip install jupyterlab
-```
+1. Execute `kedro <projetaai-plugin> init` for creating the missing local files
+2. Run `kedro run --pipeline <pipeline_name>`
 
-You can also start JupyterLab:
+#### Notes
 
-```
-kedro jupyter lab
-```
+If required, add any more information the user should know for using this pipeline. For example, login operations.
 
-### IPython
-And if you want to run an IPython session:
+## Development
 
-```
-kedro ipython
-```
+There are some other tools required for changing the project source code. Execute the commands below:
 
-### How to convert notebook cells to nodes in a Kedro project
-You can move notebook code over into a Kedro project structure using a mixture of [cell tagging](https://jupyter-notebook.readthedocs.io/en/stable/changelog.html#release-5-0-0) and Kedro CLI commands.
+1. Install dev deps with `pip install -r src/requirements-dev.txt`
+2. Install test deps with `pip install -r src/requirements-test.txt`
+3. Install pre-commit with `pre-commit install`
+4. If unit tests were created, run `pytest` before committing to ensure no breaking changes were made.
 
-By adding the `node` tag to a cell and running the command below, the cell's source code will be copied over to a Python file within `src/<package_name>/nodes/`:
+## Authors
 
-```
-kedro jupyter convert <filepath_to_my_notebook>
-```
-> *Note:* The name of the Python file matches the name of the original notebook.
+Enter the name and email of the authors in this section using a bullet list:
 
-Alternatively, you may want to transform all your notebooks in one go. Run the following command to convert all notebook files found in the project root directory and under any of its sub-folders:
+{% set authors = cookiecutter.author.split(',') %}
+{% for author in authors %}
+{% set detail = author.split(';') %}
+* {{detail[0]}}; [{{detail[1]}}](mailto:{{detail[1]}})
+{% endfor %}
 
-```
-kedro jupyter convert --all
-```
+## References
 
-### How to ignore notebook output cells in `git`
-To automatically strip out all output cell contents before committing to `git`, you can run `kedro activate-nbstripout`. This will add a hook in `.git/config` which will run `nbstripout` before anything is committed to `git`.
+Fill this section with the articles and papers that were relevant to developing this solution.
 
-> *Note:* Your output cells will be retained locally.
+_Example:_
 
-## Package your Kedro project
-
-[Further information about building project documentation and packaging your project](https://kedro.readthedocs.io/en/stable/tutorial/package_a_project.html)
+1. [XOR-Net: An Efficient Computation Pipeline for Binary Neural Network
+Inference on Edge Devices](https://cmu-odml.github.io/papers/XOR-Net_An_Efficient_Computation_Pipeline_for_Binary_Neural_Network_Inference_on_Edge_Devices.pdf)

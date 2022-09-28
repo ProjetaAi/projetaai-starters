@@ -30,5 +30,6 @@ python_package:
 author:
   title: "Author:"
   text: |
-    Please enter the authors names.
+    Please enter the authors names and email.
     Comma separated.
+    Example: abc; abc@gmail.com, def; def@hotmail.com
