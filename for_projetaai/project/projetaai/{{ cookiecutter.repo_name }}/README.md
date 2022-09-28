@@ -90,12 +90,13 @@ There are some other tools required for changing the project source code. Execut
 
 Enter the name and email of the authors in this section using a bullet list:
 
-{%- set authors = cookiecutter.author.split(',') -%}
-{%- for author in authors -%}
-{%- set detail = author.split(';') -%}
-* {{-detail[0]-}}; [{{-detail[1]-}}](mailto:{{-detail[1]-}})
-{%- endfor -%}
-
+{% set authors = cookiecutter.author.split(',') -%}
+{% for author in authors -%}
+{% set detail = author.split(';') -%}
+{% set name = detail[0].strip() -%}
+{% set email = detail[1].strip() -%}
+* {{name}}; [{{email}}](mailto:{{email}})
+{% endfor %}
 ## References
 
 Fill this section with the articles and papers that were relevant to developing this solution.
