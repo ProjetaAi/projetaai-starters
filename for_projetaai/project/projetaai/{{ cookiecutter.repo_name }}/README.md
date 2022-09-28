@@ -12,7 +12,7 @@ Input the reason for the existence of this project. Why has it been developed?
 
 ### Dataflow Diagram
 
-Design a simple descriptive dataflow diagram. You can use [Mermaid](https://mermaid-js.github.io/mermaid/#/) and [MermaidCLI](https://github.com/mermaid-js/mermaid-cli#transform-a-markdown-file-with-mermaid-diagrams) and [VSCode Mermaid](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid), [PlantUML](https://plantuml.com/) or a custom markdown image under the `docs/assets` folder.
+Design a simple descriptive dataflow diagram. You can use [Kedro Viz](https://github.com/kedro-org/kedro-viz), [Mermaid](https://mermaid-js.github.io/mermaid/#/) and [MermaidCLI](https://github.com/mermaid-js/mermaid-cli#transform-a-markdown-file-with-mermaid-diagrams) and [VSCode Mermaid](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid), [PlantUML](https://plantuml.com/) or a custom markdown image under the `docs/assets` folder.
 
 ### Pipelines
 
