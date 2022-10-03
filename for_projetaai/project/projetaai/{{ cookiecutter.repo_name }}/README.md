@@ -4,11 +4,13 @@
 
 ### Overview
 
-Insert the main idea of this project. What aims it to solve?
+Main idea of the project, business pain, what was used to solve it and its firsts results
+
+Ex: We wanted to validate if the demand behaviour of our clients, ex: gasoline and alcohol demand, for a specific month is normal, inside some boundries, or not. To do that we used the algorithm XPTO and in our firsts results we reduced the fee for wasted product / or reduced the amount of debt not paid by clients by XX% / in R$ YY, because we denied purchases that were out ou the client usual behaviour
 
 ### Motivation
 
-Input the reason for the existence of this project. Why has it been developed?
+Business pain we wanted to solve. Why has this project been developed?
 
 ### Dataflow Diagram
 
