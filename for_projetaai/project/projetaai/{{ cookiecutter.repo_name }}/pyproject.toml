@@ -3,14 +3,6 @@ package_name = "{{ cookiecutter.python_package }}"
 project_name = "{{ cookiecutter.project_name }}"
 project_version = "{{ cookiecutter.kedro_version }}"
 
-[tool.isort]
-multi_line_output = 3
-include_trailing_comma = true
-force_grid_wrap = 0
-use_parentheses = true
-line_length = 88
-known_third_party = "kedro"
-
 [tool.pytest.ini_options]
 addopts = """
 --cov-report term-missing \
@@ -21,13 +13,3 @@ addopts = """
 fail_under = 0
 show_missing = true
 exclude_lines = ["pragma: no cover", "raise NotImplementedError"]
-
-[tool.yapf]
-based_on_style = "pep8"
-align_closing_bracket_with_visual_indent = true
-allow_multiline_dictionary_keys = true
-coalesce_brackets = true
-dedent_closing_brackets = true
-split_arguments_when_comma_terminated = true
-allow_split_before_dict_value = false
-split_before_arithmetic_operator = true

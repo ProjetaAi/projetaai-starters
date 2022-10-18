@@ -1,2 +1,2 @@
 kedro=={{ cookiecutter.kedro_version }}
-kedro-projetaai @ git+https://github.com/ProjetaAi/kedro-projetaai@develop
+kedro-projetaai==0.1.0b1
