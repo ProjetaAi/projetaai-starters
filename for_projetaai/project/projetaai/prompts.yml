@@ -33,3 +33,8 @@ author:
     Please enter the authors names and email.
     Comma separated.
     Example: abc; abc@gmail.com, def; def@hotmail.com
+
+description:
+  title: "Description:"
+  text: |
+    Please enter a short description of your project.
