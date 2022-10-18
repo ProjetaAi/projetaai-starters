@@ -31,12 +31,10 @@ import os
 
 # Class that manages how configuration is loaded.
 from kedro.config import TemplatedConfigLoader
+
 CONFIG_LOADER_CLASS = TemplatedConfigLoader
 # Keyword arguments to pass to the `CONFIG_LOADER_CLASS` constructor.
-CONFIG_LOADER_ARGS = {
-    "globals_pattern": "*globals.yml",
-    "globals_dict": os.environ
-}
+CONFIG_LOADER_ARGS = {"globals_pattern": "*globals.yml", "globals_dict": os.environ}
 
 # Class that manages the Data Catalog.
 # from kedro.io import DataCatalog

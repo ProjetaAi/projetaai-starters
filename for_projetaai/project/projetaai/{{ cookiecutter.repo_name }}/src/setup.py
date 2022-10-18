@@ -3,8 +3,7 @@
 from setuptools import find_packages, setup
 
 entry_point = (
-    "{{ cookiecutter.repo_name }} = {{ cookiecutter.python_package }}"
-    ".__main__:main"
+    "{{ cookiecutter.repo_name }} = {{ cookiecutter.python_package }}" ".__main__:main"
 )
 
 
@@ -26,7 +25,7 @@ setup(
     version="0.1",
     packages=find_packages(exclude=["tests"]),
     entry_points={"console_scripts": [entry_point]},
-    install_requires=_get_dependencies('requirements.txt'),
+    install_requires=_get_dependencies("requirements.txt"),
     extras_require={
         "docs": [
             "docutils<0.18.0",
@@ -41,7 +40,9 @@ setup(
             "Jinja2<3.1.0",
         ],
         "test": _get_dependencies("requirements-test.txt"),
-        "dev": (_get_dependencies("requirements-dev.txt")
-                + _get_dependencies("requirements-test.txt")),
+        "dev": (
+            _get_dependencies("requirements-dev.txt")
+            + _get_dependencies("requirements-test.txt")
+        ),
     },
 )
