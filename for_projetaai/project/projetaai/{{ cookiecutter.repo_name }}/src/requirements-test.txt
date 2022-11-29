@@ -6,3 +6,4 @@ flake8-annotations~=2.9
 flake8-docstrings~=1.6
 pre-commit~=2.20
 isort~=5.10
+black~=22.10
