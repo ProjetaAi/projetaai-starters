@@ -1,0 +1,8 @@
+# Replace all values in <> with the information of the databricks clusters of interest
+# the databricks token MUST be stored on your Azure subscription key vault
+
+spark.databricks.service.address: <Databricks_Host>
+spark.databricks.service.clusterId: <Cluster_ID>
+spark.databricks.service.orgId: <Org_ID>
+spark.databricks.service.port: <Port>
+spark.databricks.service.token: "kv::<databricks_secret_name_on_key_vault>"
