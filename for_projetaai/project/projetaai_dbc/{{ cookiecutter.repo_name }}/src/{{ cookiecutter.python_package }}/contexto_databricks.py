@@ -1,4 +1,4 @@
-"""Define os parâmetros para conexão com o Databricks."""
+"""Define parameters to connect to Databricks."""
 import json
 from pathlib import Path
 from typing import Any, Dict, Union
@@ -11,7 +11,7 @@ from pyspark.sql import SparkSession
 
 
 class ContextoDatabricksAzure(KedroContext):
-    """Define Classe para conexão com Databricks."""
+    """Databricks context class. Necessary so that Kedro knows what context to set up"""
 
     def __init__(
         self,
