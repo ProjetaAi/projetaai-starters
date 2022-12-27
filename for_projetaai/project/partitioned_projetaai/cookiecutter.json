@@ -1,6 +1,9 @@
 {
-    "project_name": "New Multipipeline Project",
-    "repo_name": "{{ cookiecutter.project_name.strip().replace(' ', '-').replace('_', '-').lower() }}",
-    "python_package": "{{ cookiecutter.project_name.strip().replace(' ', '_').replace('-', '_').lower() }}",
-    "kedro_version": "{{ cookiecutter.kedro_version }}"
+    "project_name": "New Kedro ProjetaAi Project",
+    "repo_name": "{{ cookiecutter.project_name.replace(' ', '-').lower().strip('-') }}",
+    "python_package": "{{ cookiecutter.project_name.replace(' ', '_').replace('-', '_').lower() }}",
+    "kedro_version": "{{ cookiecutter.kedro_version }}",
+    "author": "Author names",
+    "description": "Project description",
+    "__python_version": "3.9"
 }
