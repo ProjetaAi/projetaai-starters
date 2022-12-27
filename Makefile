@@ -5,7 +5,7 @@ endif
 
 create-tag: _check_version
 	git tag $(version)
-	git push origin 0.18.2
+	git push origin alpha
 
 delete-tag: _check_version
 	-git tag --delete $(version)
