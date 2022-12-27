@@ -1,0 +1,23 @@
+para:
+  train_fraction: 0.8
+  random_state: 3
+  target_column: species
+
+
+config:
+  template:
+    pattern: 'iris {country}'
+
+  configurators:
+    -
+      target:
+        - '1'
+      data: 'brasil'
+    -
+      target:
+        - '2'
+      data: 'eua'
+    -
+      target:
+        - '3'
+      data: 'canada'
