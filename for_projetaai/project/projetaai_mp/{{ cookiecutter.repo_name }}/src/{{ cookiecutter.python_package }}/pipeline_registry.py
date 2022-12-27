@@ -3,7 +3,7 @@ from typing import Dict
 
 from kedro.pipeline import Pipeline
 
-from projetaai_starter.pipeline import create_pipeline
+from pipeline import create_pipeline
 
 
 def register_pipelines() -> Dict[str, Pipeline]:

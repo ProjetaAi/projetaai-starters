@@ -1,2 +1,0 @@
-kedro=={{ cookiecutter.kedro_version }}
-kedro-projetaai==0.1.0b1
