@@ -10,22 +10,27 @@ It is possible to use this starter in two different ways:
 
 * As a step-by-step best practice guide to using multipipeline.
 
+The output by running the command `kedro viz` is the following:
+
+![kedro-viz](https://imgur.com/a/YZquTEa "pipeline image")
+
+---
+---
+---
 
 # Step-by-step
 
-In order to start this project from scratch, it is necessary to have a `pandas-iris` finished and ready to use. It is expected that you are familiarized with kedro's functionalities, and how to alter it and run it. In case you're not comfortable with using kedro, refer to this tutorial:  [Kedro Spaceflights](https://kedro.readthedocs.io/en/stable/tutorial/spaceflights_tutorial.html).
-
-
-
 ## Motivation
 
-Imagine we find ourselves in the same Iris situation however, this time, there is information for the three species of flower for three different countries, Brazil, USA and Canada. This way, using [kedro-partitioned](https://github.com/ProjetaAi/kedro-partitioned)'s `multipipeline` to directly process this new information. 
+Imagine we find ourselves in the same [Iris](https://archive.ics.uci.edu/ml/datasets/iris) situation, however, this time there is information about the same flowers for three different countries, Brazil, the USA and Canada. This way, using [kedro-partitioned](https://github.com/ProjetaAi/kedro-partitioned)'s `multipipeline` it is easier proccess all this new information in a parallel manner. 
 
 ## Preparation
 
+In order to start this project from scratch, it is necessary to have a [`pandas-iris`](https://kedro.readthedocs.io/en/stable/get_started/new_project.html) starter finished and ready to use. It is expected that you are familiarized with kedro's functionalities, and how to alter and run it. In case you're not comfortable with using kedro, refer to this tutorial:  [Kedro Spaceflights](https://kedro.readthedocs.io/en/stable/tutorial/spaceflights_tutorial.html).
 
 
-In order to run this starter, it is necessary to install an additional packages, all avaiable throught `pip`, them being `kedro-partitioned`(used to create multipipelines, making it easier to work with partitioned datasets). In order to install it, execute the following, add the package to the `requirements.txt` file and run the following command:
+
+In order to run this starter, it is necessary to install an additional package, avaiable throught `pip`, it being `kedro-partitioned` (used to create multipipelines, making it easier to work with partitioned datasets). In order to install it, add the package to the `requirements.txt` file and run the following command:
 
 ```
 pip install -r src/requirements.txt
@@ -37,7 +42,7 @@ pip install -r src/requirements.txt
 
 ## Changes
 
-Initially, copy the `iris.csv` file so the `data/01_raw` path contains `iris 1.csv` `iris 2.csv` and `iris 3.csv`, each one of those, representing a different country. It is then necessary to change the `catalog.yaml` file, adding the new variables. It is important to note that the multipipeline is unable to work with partitioned variables in memory, therefore, it is necessary to specify the node's outputs at `catalog.yaml`:
+Initially, copy the `iris.csv` file so the `data/01_raw` path contains `iris 1.csv` `iris 2.csv` and `iris 3.csv`, each one of those, representing a different country. It is then necessary to change the `catalog.yml` file, adding the new variables. It is important to note that the multipipeline is unable to work with partitioned variables in memory, therefore, it is necessary to specify the node's outputs at `catalog.yml`:
 
 ```yml
 iris_data_multi:
@@ -185,4 +190,5 @@ def report_accuracy(y_pred: pd.Series, y_test: pd.Series):
 
 
 With this, by running `kedro run`, 3 files will be generated, each with the accuracy of each model.
+
 
