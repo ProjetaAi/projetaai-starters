@@ -23,7 +23,7 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=split_data,
-                inputs=["iris_data_multi_with_country", "params:para"],
+                inputs=["iris_data_multi_with_country", "params:parameters"],
                 outputs=["X_train", "X_test", "y_train", "y_test"],
                 name="split",
             ),

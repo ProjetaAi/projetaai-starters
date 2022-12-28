@@ -1,7 +1,21 @@
 # ProjetaAi_mp Starter
 
 ## Disclaimer
-This starter was based of [pandas-iris](https://kedro.readthedocs.io/en/stable/get_started/new_project.html). In order to start this project from scratch, it is necessary to have a `pandas-iris` finished and ready to use. It is expected that you are familiarized with kedro's functionalities, how to alter it and run it. In case you're not comfortable with using kedro, refer to this tutorial:  [Kedro Spaceflights](https://kedro.readthedocs.io/en/stable/tutorial/spaceflights_tutorial.html)
+
+The core objective of this starter is to make the user comfortable with the multipipeline functionality provided by the `kedro-partitioned` package. This starter was based on [pandas-iris](https://kedro.readthedocs.io/en/stable/get_started/new_project.html). 
+
+It is possible to use this starter in two different ways:
+
+As a reference guide to the multipipeline function, by running `kedro new --starter projetaai_mp` while having `kedro-projetaai` installed on the environment.
+
+As a step-by-step best practice guide to using multipipeline.
+
+
+# Step-by-step
+
+In order to start this project from scratch, it is necessary to have a `pandas-iris` finished and ready to use. It is expected that you are familiarized with kedro's functionalities, and how to alter it and run it. In case you're not comfortable with using kedro, refer to this tutorial:  [Kedro Spaceflights](https://kedro.readthedocs.io/en/stable/tutorial/spaceflights_tutorial.html).
+
+
 
 ## Motivation
 
@@ -11,13 +25,13 @@ Imagine we find ourselves in the same Iris situation however, this time, there i
 
 
 
-In order to run this starter, it is necessary to isntall an additional packages, all avaiable throught `pip`, them being `kedro-partitioned`(used to create multipipelines, making it easier to work with partitioned datasets). In order to install it, execute the following command line:
+In order to run this starter, it is necessary to install an additional packages, all avaiable throught `pip`, them being `kedro-partitioned`(used to create multipipelines, making it easier to work with partitioned datasets). In order to install it, execute the following, add the package to the `requirements.txt` file and run the following command:
 
 ```
 pip install -r src/requirements.txt
 ```
 
-> Note:
+> **Note**:
 > It is possible to download the fully functional template for this project by simply running `kedro new --starter projetaai_mp`. It is then possible to run it and visualize it with the usual `kedro run` and `kedro viz` commands.
 
 
@@ -77,7 +91,7 @@ accuracy:
 Next, it is necessary to change the parameters in a way that connects each country to a different dataset, this change makes sure the dataset receives a new column which specifies which country it belongs to. These changes can be seen on the `parameter.yml` which follows:
 
 ```yml
-para:
+parameters:
   train_fraction: 0.8
   random_state: 3
   target_column: species
