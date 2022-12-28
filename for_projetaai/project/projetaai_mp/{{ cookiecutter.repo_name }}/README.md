@@ -12,7 +12,7 @@ It is possible to use this starter in two different ways:
 
 The output by running the command `kedro viz` is the following:
 
-![kedro-viz](https://imgur.com/a/YZquTEa "pipeline image")
+![kedro-viz](https://i.imgur.com/aBizh9i.jpg "pipeline image")
 
 ---
 ---
@@ -42,7 +42,10 @@ pip install -r src/requirements.txt
 
 ## Changes
 
-Initially, copy the `iris.csv` file so the `data/01_raw` path contains `iris 1.csv` `iris 2.csv` and `iris 3.csv`, each one of those, representing a different country. It is then necessary to change the `catalog.yml` file, adding the new variables. It is important to note that the multipipeline is unable to work with partitioned variables in memory, therefore, it is necessary to specify the node's outputs at `catalog.yml`:
+Initially, copy the `iris.csv` file paste it into the same folder, and rename, it so the data/01_raw path contains `iris 1.csv`, `iris 2.csv` and `iris 3.csv`, each one of those, will represent information collected in different countries. It is then necessary to change the `catalog.yml` file, to recognize the new files. 
+
+The multipipeline functionality is unable to work with partitioned data in memory, therefore, it is necessary to specify all nodes outputs in the catalog.yaml.
+All those modifications can be found below:
 
 ```yml
 iris_data_multi:
@@ -93,7 +96,9 @@ accuracy:
 ```
 
 
-Next, it is necessary to change the parameters in a way that connects each country to a different dataset, this change makes sure the dataset receives a new column which specifies which country it belongs to. These changes can be seen on the `parameter.yml` which follows:
+Next, it is necessary to change the parameters in a way that connects each country to a different dataset, this change makes sure the datasets iris 1, iris 2, and iris 3 each receive a new column that specifies which country it belongs to. 
+
+It is important to note that this change will be unnecessary in most cases when dealing with partitioned datasets, it is only necessary because we are emulating a real partitioned dataset on this starter. These changes can be seen on the `parameter.yml`:
 
 ```yml
 parameters:
@@ -170,6 +175,16 @@ def create_pipeline(**kwargs) -> Pipeline:
     )
 
 ```
+The multipipeline can be configured in a whole array of different parameters, the most important ones being:
+
+
+| parameter         | functionality                                                                                                                   |
+|-------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| pipe              | the pipeline which will be used in the partitioned dataset                                                                      |
+| partitioned input | The variable named in the file `catalog.yml` that corresponds to the partitioned dataset                                        |
+| configurator      | The configurator which assimilates a particular information to the partitioned dataset                                          |
+| n_slices          | Determines the maximum number of slices the pipeline will be cut into. By default it is equal to the number of cores in the CPU |
+
 
 >```node.py```
 
@@ -189,6 +204,6 @@ def report_accuracy(y_pred: pd.Series, y_test: pd.Series):
 ```
 
 
-With this, by running `kedro run`, 3 files will be generated, each with the accuracy of each model.
+After all those modifications to the pandas-iris starter, running `kedro run`, 3 files will be generated, each with the accuracy of each model. For this starter, it is assumed that differences in the country's climate, soil condition, or environment can cause a model that is accurate in one country to be inaccurate in another one. Because of that, it is necessary to create a different model for each country.
 
-
+Using a huge number of different Kedro default functions would be necessary to replicate the effect of using the multipipeline, whichmakes this kind of situation simpler, as only one pipeline was declared and it took care of the rest.

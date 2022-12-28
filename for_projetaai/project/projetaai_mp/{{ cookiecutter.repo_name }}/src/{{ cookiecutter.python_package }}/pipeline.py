@@ -42,7 +42,7 @@ def create_pipeline(**kwargs) -> Pipeline:
         ]),
         partitioned_input = 'iris_data_multi',
         name = 'multipipe1',
-        configurator = 'params:config'
+        configurator = 'params:config',
     )
 
     
