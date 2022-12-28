@@ -6,9 +6,9 @@ The core objective of this starter is to make the user comfortable with the mult
 
 It is possible to use this starter in two different ways:
 
-As a reference guide to the multipipeline function, by running `kedro new --starter projetaai_mp` while having `kedro-projetaai` installed on the environment.
+* As a reference guide to the multipipeline function, by running `kedro new --starter projetaai_mp` while having `kedro-projetaai` installed on the environment.
 
-As a step-by-step best practice guide to using multipipeline.
+* As a step-by-step best practice guide to using multipipeline.
 
 
 # Step-by-step
