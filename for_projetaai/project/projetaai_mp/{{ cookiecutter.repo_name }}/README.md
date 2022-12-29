@@ -15,14 +15,16 @@ The output by running the command `kedro viz` is the following:
 ![kedro-viz](https://i.imgur.com/aBizh9i.jpg "pipeline image")
 
 ---
----
----
+
 
 # Step-by-step
 
 ## Motivation
 
-Imagine we find ourselves in the same [Iris](https://archive.ics.uci.edu/ml/datasets/iris) situation, however, this time there is information about the same flowers for three different countries, Brazil, the USA and Canada. This way, using [kedro-partitioned](https://github.com/ProjetaAi/kedro-partitioned)'s `multipipeline` it is easier proccess all this new information in a parallel manner. 
+Imagine we find ourselves in the same [Iris](https://archive.ics.uci.edu/ml/datasets/iris) situation, however, this time there is information about the same flowers for three different countries, Brazil, the USA, and Canada. As each country has its particularity, it is necessary to create a specific model for each data, and so, 3 different models.  This way, using [kedro-partitioned](https://github.com/ProjetaAi/kedro-partitioned)'s `multipipeline` it is easier to proccess all this new information in a parallel manner. 
+
+
+The step by step of data validation, data transformation, and model training is very similar for all data. Instead of manually repeating all the steps, we can use [kedro-partitioned](https://github.com/ProjetaAi/kedro-partitioned)'s multipipeline, which facilitates this process by dynamically repeating a group of processes based on some aggregation rules, in this case, country.
 
 ## Preparation
 
@@ -180,11 +182,13 @@ The multipipeline can be configured in a whole array of different parameters, th
 
 | parameter         | functionality                                                                                                                   |
 |-------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| pipe              | the pipeline which will be used in the partitioned dataset                                                                      |
-| partitioned input | The variable named in the file `catalog.yml` that corresponds to the partitioned dataset                                        |
-| configurator      | The configurator which assimilates a particular information to the partitioned dataset                                          |
-| n_slices          | Determines the maximum number of slices the pipeline will be cut into. By default it is equal to the number of cores in the CPU |
+| pipe              | the pipeline which will be used in the partitioned dataset.                                                                      |
+| partitioned input | The variable named in the file `catalog.yml` that corresponds to the partitioned dataset.                                       |
+| configurator      | The configurator which assimilates a particular information to the partitioned dataset.                                          |
+| n_slices          | Determines the maximum number of slices the pipeline will be cut into. By default it is equal to the number of cores in the CPU. |
 
+
+It is possible to change these configurations inside of this starter to obtain different pipelines, for example, altering the number of slices to be 3 or altering the configurator.
 
 >```node.py```
 
@@ -197,13 +201,18 @@ def report_accuracy(y_pred: pd.Series, y_test: pd.Series):
         y_test: True target.
     """
     accuracy = (y_pred == y_test).sum() / len(y_test)
-    #logger = logging.getLogger(__name__)
-    #logger.info("Model has accuracy of %.3f on test data.", accuracy)
     return("Model has accuracy of" + str(accuracy) +  " on test data.")
 
 ```
 
 
-After all those modifications to the pandas-iris starter, running `kedro run`, 3 files will be generated, each with the accuracy of each model. For this starter, it is assumed that differences in the country's climate, soil condition, or environment can cause a model that is accurate in one country to be inaccurate in another one. Because of that, it is necessary to create a different model for each country.
 
-Using a huge number of different Kedro default functions would be necessary to replicate the effect of using the multipipeline, whichmakes this kind of situation simpler, as only one pipeline was declared and it took care of the rest.
+
+
+After all those modifications to the pandas-iris starter, running kedro run, 3 files will be generated. Each one containing the accuracy of the model trained for a specific country. 
+
+Remembering that, for this starter, it is presumed that differences in the country's climate, soil condition, or environment can cause an accurate model in one country to be inaccurate in another. Because of that, it is necessary to create a different model for each country.
+
+To replicate the effect of using the multipipeline that we have in this starter, would be necessary to create a pipeline for each country, or create a modular pipeline and manually specify its inputs and outputs and specify all this information on a `datacatalog.yml` file. 
+
+When there aren't that many partitions in the dataset, using Kedro’s default functionalities is feasible. However, as the number of partitions in the dataset grows (if the dataset is partitioned by country, products categories, etc.) it becomes infeasible to manually input this information into the data catalog file or create that many pipelines.
