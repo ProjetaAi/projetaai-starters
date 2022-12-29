@@ -44,7 +44,7 @@ pip install -r src/requirements.txt
 
 ## Changes
 
-Initially, copy the `iris.csv` file paste it into the same folder, and rename, it so the data/01_raw path contains `iris 1.csv`, `iris 2.csv` and `iris 3.csv`, each one of those, will represent information collected in different countries. It is then necessary to change the `catalog.yml` file, to recognize the new files. 
+Initially, copy the `iris.csv` file paste it into the same folder, and rename, it so the data/01_raw path contains `iris 1.csv`, `iris 2.csv` and `iris 3.csv`, each one of those, will represent information collected in different countries. It is then necessary to change the `conf/base/catalog.yml` file, to recognize the new files. 
 
 The multipipeline functionality is unable to work with partitioned data in memory, therefore, it is necessary to specify all nodes outputs in the catalog.yaml.
 All those modifications can be found below:
@@ -100,7 +100,7 @@ accuracy:
 
 Next, it is necessary to change the parameters in a way that connects each country to a different dataset, this change makes sure the datasets iris 1, iris 2, and iris 3 each receive a new column that specifies which country it belongs to. 
 
-It is important to note that this change will be unnecessary in most cases when dealing with partitioned datasets, it is only necessary because we are emulating a real partitioned dataset on this starter. The configurator defines a pattern to assimilate the different datasets to a specific template. These changes can be seen on the `parameter.yml`:
+It is important to note that this change will be unnecessary in most cases when dealing with partitioned datasets, it is only necessary because we are emulating a real partitioned dataset on this starter. The configurator defines a pattern to assimilate the different datasets to a specific template. These changes can be seen on the `conf/base/parameters.yml`:
 
 ```yml
 parameters:
@@ -175,22 +175,6 @@ def create_pipeline(**kwargs) -> Pipeline:
         name = 'multipipe1',
         configurator = 'params:config'
 
-  # def create_pipeline(**kwargs) -> Pipeline:
-  #   return multipipeline(
-  #       pipe = pipeline([
-  #           node(
-  #               func = ,
-  #               inputs = ,
-  #               outputs = ,
-  #               name = 
-  #           ),
-  #       ]),
-  #       partitioned_input = ,
-  #       name = ,
-  #       configurator = ,
-  #       n_slices = ,
-  #   )
-  #   )
 
 ```
 The multipipeline can be configured in a whole array of different parameters, the most important ones being:
