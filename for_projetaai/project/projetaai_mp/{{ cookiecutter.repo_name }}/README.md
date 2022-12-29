@@ -100,7 +100,7 @@ accuracy:
 
 Next, it is necessary to change the parameters in a way that connects each country to a different dataset, this change makes sure the datasets iris 1, iris 2, and iris 3 each receive a new column that specifies which country it belongs to. 
 
-It is important to note that this change will be unnecessary in most cases when dealing with partitioned datasets, it is only necessary because we are emulating a real partitioned dataset on this starter. These changes can be seen on the `parameter.yml`:
+It is important to note that this change will be unnecessary in most cases when dealing with partitioned datasets, it is only necessary because we are emulating a real partitioned dataset on this starter. The configurator defines a pattern to assimilate the different datasets to a specific template. These changes can be seen on the `parameter.yml`:
 
 ```yml
 parameters:
@@ -174,7 +174,23 @@ def create_pipeline(**kwargs) -> Pipeline:
         partitioned_input = 'iris_data_multi',
         name = 'multipipe1',
         configurator = 'params:config'
-    )
+
+  # def create_pipeline(**kwargs) -> Pipeline:
+  #   return multipipeline(
+  #       pipe = pipeline([
+  #           node(
+  #               func = ,
+  #               inputs = ,
+  #               outputs = ,
+  #               name = 
+  #           ),
+  #       ]),
+  #       partitioned_input = ,
+  #       name = ,
+  #       configurator = ,
+  #       n_slices = ,
+  #   )
+  #   )
 
 ```
 The multipipeline can be configured in a whole array of different parameters, the most important ones being:
@@ -182,10 +198,11 @@ The multipipeline can be configured in a whole array of different parameters, th
 
 | parameter         | functionality                                                                                                                   |
 |-------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| pipe              | the pipeline which will be used in the partitioned dataset.                                                                      |
+| pipe              | the pipeline which will be used in the partitioned dataset. A kedro pipeline object.                                                                      |
 | partitioned input | The variable named in the file `catalog.yml` that corresponds to the partitioned dataset.                                       |
-| configurator      | The configurator which assimilates a particular information to the partitioned dataset.                                          |
+| configurator      | The configurator which assimilates a particular information to the partitioned dataset. Based on the chages made to the `parameters.yml` file.                                          |
 | n_slices          | Determines the maximum number of slices the pipeline will be cut into. By default it is equal to the number of cores in the CPU. |
+| name          | The name of the multipipeline. |
 
 
 It is possible to change these configurations inside of this starter to obtain different pipelines, for example, altering the number of slices to be 3 or altering the configurator.
@@ -216,3 +233,27 @@ Remembering that, for this starter, it is presumed that differences in the count
 To replicate the effect of using the multipipeline that we have in this starter, would be necessary to create a pipeline for each country, or create a modular pipeline and manually specify its inputs and outputs and specify all this information on a `datacatalog.yml` file. 
 
 When there aren't that many partitions in the dataset, using Kedro’s default functionalities is feasible. However, as the number of partitions in the dataset grows (if the dataset is partitioned by country, products categories, etc.) it becomes infeasible to manually input this information into the data catalog file or create that many pipelines.
+
+---
+# Utilities 
+
+In order to make implementing the `multipipeline` easier inside your models, there is a generic structure of it below:
+
+```python
+def create_pipeline(**kwargs) -> Pipeline:
+    return multipipeline(
+        pipe = pipeline([
+            node(
+                func = ,
+                inputs = ,
+                outputs = ,
+                name = 
+            ),
+        ]),
+        partitioned_input = ,
+        name = ,
+        configurator = ,
+        n_slices = ,
+    )
+
+```
