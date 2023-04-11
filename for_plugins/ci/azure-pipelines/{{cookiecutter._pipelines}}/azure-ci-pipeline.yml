@@ -1,0 +1,35 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+ branches:
+   include:
+    - main
+    - ci/*
+
+stages:
+
+  - stage: Project_Background_Check
+    jobs:
+    - template: yamls/01_template_checks.yml
+    - template: yamls/02_linting.yml
+
+  - stage: Unit_Testing
+    dependsOn: Project_Background_Check
+    condition: succeeded()
+    jobs:
+    - template: yamls/03_unit_testing.yml
+
+  - stage: Check_Prod_Variables
+    dependsOn: Unit_Testing
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+    - template: yamls/04_production_checks.yml
+
+  - stage: Deploy_Project
+    dependsOn: Check_Prod_Variables
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    jobs:
+    - template: yamls/05_send_to_production.yml

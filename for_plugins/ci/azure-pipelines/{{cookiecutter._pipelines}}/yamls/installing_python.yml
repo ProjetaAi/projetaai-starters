@@ -1,0 +1,7 @@
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.9'
+    addToPath: true
+    architecture: 'x64'
+  displayName: 'Installing Python 3.9'

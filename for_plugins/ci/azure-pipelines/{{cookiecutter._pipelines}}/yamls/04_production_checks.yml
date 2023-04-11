@@ -1,0 +1,24 @@
+jobs:
+  - job: Template_Checker
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - script: |
+        if [$PRODUCTION_COMPUTE = ""]
+        then
+          echo "Unable to deploy! Variable "PRODUCTION_COMPUTE" is not defined."
+          exit 1
+        elif [$PRODUCTION_WORKSPACE = ""]
+        then
+          echo "Unable to deploy! Variable "PRODUCTION_WORKSPACE" is not defined."
+          exit 1
+        elif [$PRODUCTION_RESOURCE_GROUP = ""]
+        then
+          echo "Unable to deploy! Variable "PRODUCTION_RESOURCE_GROUP" is not defined."
+          exit 1
+        elif [$KEDRO_PIPELINES = ""]
+        then
+          echo "Unable to deploy! Variable "KEDRO_PIPELINES" is not defined."
+          exit 1
+        fi
+      displayName: 'Checking for production variables'

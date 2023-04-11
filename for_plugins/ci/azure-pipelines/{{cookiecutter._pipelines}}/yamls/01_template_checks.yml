@@ -1,0 +1,8 @@
+jobs:
+  - job: Template_Checker
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - script: |
+        make check-required-files
+      displayName: 'Checking for requirements files'

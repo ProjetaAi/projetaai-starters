@@ -1,0 +1,20 @@
+jobs:
+  - job: Linting
+    dependsOn: Template_Checker
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: installing_python.yml
+    - script: |
+        make install-base
+        make install-test
+      displayName: 'Installing Linting Requirements'
+    - script: |
+        make lint-with-flake8
+      displayName: 'Linting with flake8'
+    - script: |
+        make lint-with-black
+      displayName: 'Linting with Black'
+    - script: |
+        make lint-with-isort
+      displayName: 'Linting with Isort'

@@ -1,0 +1,21 @@
+jobs:
+  - job: Deployer
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - template: installing_python.yml
+    - script: |
+        make install-base
+      displayName: 'Installing Requirements'
+    - bash: |
+        mkdir -p ./conf/local
+        echo "azure:
+          deploy:
+            compute: $(PRODUCTION_COMPUTE)
+            resource_group: $(PRODUCTION_RESOURCE_GROUP)
+            workspace: $(PRODUCTION_WORKSPACE)
+        " >> ./conf/local/credentials.yml
+      displayName: Get deployment configuration
+    - script: |
+        make publish
+      displayName: 'Deploy Project'
