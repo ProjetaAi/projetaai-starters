@@ -4,5 +4,7 @@ jobs:
       vmImage: 'ubuntu-latest'
     steps:
     - script: |
-        make check-required-files
+        echo "$(Build.SourceBranchName)"
+        echo $(Build.SourceBranchName)
+        make -C azure-pipelines check-required-files
       displayName: 'Checking for requirements files'

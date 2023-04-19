@@ -5,17 +5,27 @@ jobs:
     steps:
     - template: installing_python.yml
     - script: |
-        make install-base
+        make -C azure-pipelines install-base
       displayName: 'Installing Requirements'
     - bash: |
-        mkdir -p ./conf/local
-        echo "azure:
+        (cd .. && mkdir -p ./conf/local)
+        (cd .. && echo "azure:
           deploy:
             compute: $(PRODUCTION_COMPUTE)
             resource_group: $(PRODUCTION_RESOURCE_GROUP)
             workspace: $(PRODUCTION_WORKSPACE)
-        " >> ./conf/local/credentials.yml
+        " >> ./conf/local/credentials.yml)
       displayName: Get deployment configuration
-    - script: |
-        make publish
-      displayName: 'Deploy Project'
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'svc-datascience-prd'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          pipes=($(KEDRO_PIPELINES))
+          for pipe in "${pipes[@]}"
+          do
+            kedro azure pipeline create --pipeline $pipe --branch $(Build.SourceBranchName)
+            kedro azure pipeline publish --pipeline $pipe --branch $(Build.SourceBranchName)
+          done
+      displayName: Deploy to production

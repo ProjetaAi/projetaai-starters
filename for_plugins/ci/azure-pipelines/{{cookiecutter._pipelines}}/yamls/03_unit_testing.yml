@@ -5,9 +5,9 @@ jobs:
     steps:
     - template: installing_python.yml
     - script: |
-        make install-base
-        make install-test
+        make -C azure-pipelines install-base
+        make -C azure-pipelines install-test
       displayName: 'Installing Testing Requirements'
     - script: |
-        make check
+        make -C azure-pipelines check
       displayName: 'Running Pytest and Coverage'
