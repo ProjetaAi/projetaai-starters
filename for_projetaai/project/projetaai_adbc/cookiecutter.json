@@ -2,8 +2,9 @@
     "project_name": "New Kedro ProjetaAi Project",
     "repo_name": "{{ cookiecutter.project_name.replace(' ', '-').lower().strip('-') }}",
     "python_package": "{{ cookiecutter.project_name.replace(' ', '_').replace('-', '_').lower() }}",
-    "kedro_version": "{{ cookiecutter.kedro_version }}",
     "author": "Author names",
     "description": "Project description",
+    "databricks_connect_version": "10.4.*",
+    "kedro_version": "0.18.2",
     "__python_version": "3.9"
 }

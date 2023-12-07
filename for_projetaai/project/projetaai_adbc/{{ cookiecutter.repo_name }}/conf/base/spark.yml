@@ -6,3 +6,4 @@ spark.databricks.service.clusterId: <Cluster_ID>
 spark.databricks.service.orgId: <Org_ID>
 spark.databricks.service.port: <Port>
 spark.databricks.service.token: "kv::<databricks_secret_name_on_key_vault>"
+url_key_vault: https://<your_azure_url>.vault.azure.net/

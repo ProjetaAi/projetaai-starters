@@ -2,11 +2,18 @@
 
 ## Description
 
+Describe the project in a few sentences.
+
 ### Overview
 
 Main idea of the project, business pain, what was used to solve it and its firsts results
 
 Ex: We wanted to validate if the demand behaviour of our clients, ex: gasoline and alcohol demand, for a specific month is normal, inside some boundries, or not. To do that we used the algorithm XPTO and in our firsts results we reduced the fee for wasted product / or reduced the amount of debt not paid by clients by XX% / in R$ YY, because we denied purchases that were out ou the client usual behaviour
+
+A good overview contains:
+- model used/reason
+- first results
+- how much it improved the business (gains in R$ or %)
 
 ### Motivation
 
@@ -24,7 +31,9 @@ _Example:_
 
 * **Data Engineering:** Pre-processes the inputs X, Y, Z using moving averages in order to smooth the prediction results producing A, B, C.
 
-* **Data Science:** Predicts the inputs A, B, C values for the post three months from the execution moment using linear regression producing outputs D, E, F. 
+* **Data Science:** Predicts the inputs A, B, C values for the post three months from the execution moment using linear regression producing outputs D, E, F.
+
+Don't forget that you can also write readme.md in each pipeline folder to explain it in more detail if necessary.
 
 ### Inputs/Features
 
@@ -113,13 +122,6 @@ There are some other tools required for changing the project source code. Execut
 
 Enter the name and email of the authors in this section using a bullet list:
 
-{% set authors = cookiecutter.author.split(',') -%}
-{% for author in authors -%}
-{% set detail = author.split(';') -%}
-{% set name = detail[0].strip() -%}
-{% set email = detail[1].strip() -%}
-* {{name}}; [{{email}}](mailto:{{email}})
-{% endfor %}
 ## References
 
 Fill this section with the articles and papers that were relevant to developing this solution.
